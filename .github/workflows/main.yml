@@ -16,6 +16,10 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+defaults:
+  run:
+    working-directory: cot-js
+
 jobs:
   bauen:
     runs-on: ubuntu-latest
@@ -32,7 +36,7 @@ jobs:
         run: node run-cot.js --aus site/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: cot-js/site
 
   veroeffentlichen:
     needs: bauen
